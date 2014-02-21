@@ -7,10 +7,15 @@ def get_hero_name(hero_id, heroes_list):
 
 def get_account_id():
     while True:
-        steam_user = raw_input("Enter Steam Name/Vanity URL:")
-        steam_id = api.get_steam_id(steam_user)
-        if steam_id["response"]["success"] == 1:
-            return int(steam_id["response"]["steamid"])
+        user_input = raw_input("Enter SteamID/VanityURL:")
+        if user_input.isdigit() and len(user_input) == 17:
+            return int(user_input)
+        elif user_input.isdigit() and len(user_input) == 9:
+            return int(user_input) + 76561197960265728 
+        else:
+            steam_id = api.get_steam_id(user_input)
+            if steam_id["response"]["success"] == 1:
+                return int(steam_id["response"]["steamid"])
         print "User not found! Try again!"
 
 account_id64 = get_account_id()
