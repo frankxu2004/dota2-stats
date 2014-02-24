@@ -47,11 +47,11 @@ def match_stats(account_id64, account_id32):
 if __name__ == '__main__':
     heroes_list = api.get_heroes()["result"]["heroes"]
     while True:
-        #try:
+        try:
             account_id64, account_id32 = get_account_id()
             win, loss = match_stats(account_id64, account_id32)
             winrate = float(win)/float(win+loss)
             print "Win: " + str(win) + " Loss: " + str(loss)
             print "Win Rate: " + str(winrate*100)+"%"
-        #except:
+        except:
             pass
